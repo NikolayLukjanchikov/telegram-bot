@@ -3,7 +3,7 @@
 --changeset Nikolay:1
 CREATE TABLE notification_task
 (
-    id       SERIAL,
+    id       INT,
     chatId   INT,
     message  CHARACTER,
     timeDate CHARACTER
