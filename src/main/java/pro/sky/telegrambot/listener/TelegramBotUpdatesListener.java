@@ -15,8 +15,9 @@ import java.util.List;
 
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
-    private final String ERROR_TEXT = "Извини, я ограничен в ответах, напиши /start - для начала работы";
-    private final String START_TEXT = "Приветствую, я бот который поможет не забыть";
+    private final String START = "/start";
+    private final String ERROR_MESSAGE = "Извини, я ограничен в ответах, напиши /start - для начала работы";
+    private final String START_MESSAGE = "Приветствую, я бот, который поможет не забыть";
 
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
 
@@ -32,11 +33,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     public int process(List<Update> updates) { // обработка запросов бота
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
-            if ((update.message().text()).equals("/start")) {
-                SendMessage startMessage = new SendMessage(update.message().chat().id(), START_TEXT);
+            if ((update.message().text()).equals(START)) {
+                SendMessage startMessage = new SendMessage(update.message().chat().id(), START_MESSAGE);
                 SendResponse startResponse = telegramBot.execute(startMessage);
             } else {
-                SendMessage errorMessage = new SendMessage(update.message().chat().id(), ERROR_TEXT);
+                SendMessage errorMessage = new SendMessage(update.message().chat().id(), ERROR_MESSAGE);
                 SendResponse errorResponse = telegramBot.execute(errorMessage);
             }
         });
