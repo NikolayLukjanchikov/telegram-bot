@@ -6,4 +6,5 @@ import pro.sky.telegrambot.model.NotificationTask;
 
 @Repository
 public interface NotificationTaskRepository extends JpaRepository<NotificationTask, Long> {
+
 }
